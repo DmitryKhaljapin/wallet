@@ -20,7 +20,7 @@ import jakarta.annotation.Generated;
  * WalletRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-05-21T20:26:35.801720+03:00[Europe/Moscow]", comments = "Generator version: 7.6.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-05-21T20:43:12.756653200+03:00[Europe/Moscow]", comments = "Generator version: 7.6.0")
 public class WalletRequest {
 
   private UUID walletId;

@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 public class Wallet {
-    private UUID walletId;
+    private final UUID walletId;
     private BigDecimal balance;
 
     public Wallet(UUID walletId, BigDecimal balance) {

@@ -8,6 +8,8 @@ import com.dmitrix.wallet.domain.entities.Wallet;
 import com.dmitrix.wallet.domain.queries.GetWalletQuery;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class WalletMapper {
 
@@ -26,8 +28,8 @@ public class WalletMapper {
         );
     }
 
-    public GetWalletQuery toQuery(WalletRequest request) {
-        return new GetWalletQuery(request.getWalletId());
+    public GetWalletQuery toQuery(UUID walletId) {
+        return new GetWalletQuery(walletId);
     }
 
     public WalletResponse toResponse(Wallet wallet) {
