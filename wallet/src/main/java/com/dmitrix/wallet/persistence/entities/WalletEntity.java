@@ -25,18 +25,17 @@ public class WalletEntity {
         this.balance = balance;
     }
 
-    UUID getId() {
+    public UUID getId() {
         return this.id;
     }
-    void setId (UUID id) {
+    public void setId (UUID id) {
         this.id = id;
     }
 
-    BigDecimal getBalance() {
+    public BigDecimal getBalance() {
         return this.balance;
     }
-
-    void setBalance(BigDecimal balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 }
