@@ -1,6 +1,4 @@
-package com.dmitrix.wallet.persistence.respositories;
-
-import com.dmitrix.wallet.domain.exceptions.ApplicationException;
+package com.dmitrix.wallet.domain.exceptions;
 
 public class NotEnoughMoneyException extends ApplicationException {
     public NotEnoughMoneyException(String message) {

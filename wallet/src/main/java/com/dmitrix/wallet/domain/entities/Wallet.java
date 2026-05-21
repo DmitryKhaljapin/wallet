@@ -1,6 +1,6 @@
 package com.dmitrix.wallet.domain.entities;
 
-import com.dmitrix.wallet.persistence.respositories.NotEnoughMoneyException;
+import com.dmitrix.wallet.domain.exceptions.NotEnoughMoneyException;
 
 import java.math.BigDecimal;
 import java.util.UUID;

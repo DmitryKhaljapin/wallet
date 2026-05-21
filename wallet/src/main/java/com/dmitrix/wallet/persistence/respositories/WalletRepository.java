@@ -31,6 +31,12 @@ public class WalletRepository implements WalletRepositoryInterface {
         return this.toWallet(walletEntity);
     }
 
+    public Wallet getById(UUID id) throws RecordNotFoundException {
+        WalletEntity walletEntity = this.walletJpaRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("Wallet not found"));
+
+        return this.toWallet(walletEntity);
+    }
+
     public Wallet save(Wallet walletToSave) {
         WalletEntity walletEntityToSave = this.toEntity(walletToSave);
 
