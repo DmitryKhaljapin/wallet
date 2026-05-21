@@ -13,7 +13,7 @@ import java.util.UUID;
 public class WalletRepository implements WalletRepositoryInterface {
     private final WalletJpaRepository walletJpaRepository;
 
-    WalletRepository(WalletJpaRepository walletJpaRepository) {
+    public WalletRepository(WalletJpaRepository walletJpaRepository) {
         this.walletJpaRepository = walletJpaRepository;
     }
 
@@ -25,17 +25,17 @@ public class WalletRepository implements WalletRepositoryInterface {
         return new Wallet(walletEntity.getId(), walletEntity.getBalance());
     }
 
-    public Wallet getById(UUID id) throws RecordNotFoundException {
-        WalletEntity walletEntity = this.walletJpaRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("Wallet not found"));
+    public Wallet getByIdForUpdate(UUID id) throws RecordNotFoundException {
+        WalletEntity walletEntity = this.walletJpaRepository.findByIdForUpdate(id).orElseThrow(() -> new RecordNotFoundException("Wallet not found"));
 
         return this.toWallet(walletEntity);
     }
 
-    public Wallet update(Wallet walletToUpdate) {
-        WalletEntity walletEntityToUpdate = this.toEntity(walletToUpdate);
+    public Wallet save(Wallet walletToSave) {
+        WalletEntity walletEntityToSave = this.toEntity(walletToSave);
 
-        WalletEntity updatedWalletEntity = this.walletJpaRepository.save(walletEntityToUpdate);
+        WalletEntity savedWalletEntity = this.walletJpaRepository.save(walletEntityToSave);
 
-        return this.toWallet(updatedWalletEntity);
+        return this.toWallet(savedWalletEntity);
     }
 }

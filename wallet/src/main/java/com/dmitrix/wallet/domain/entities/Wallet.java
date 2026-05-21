@@ -1,5 +1,7 @@
 package com.dmitrix.wallet.domain.entities;
 
+import com.dmitrix.wallet.persistence.respositories.NotEnoughMoneyException;
+
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -19,8 +21,14 @@ public class Wallet {
     public BigDecimal getBalance() {
         return this.balance;
     }
-    public void setBalance(BigDecimal balance) {
-        //TODO add checks
-        this.balance = balance;
+
+    public void deposit(BigDecimal amount) {
+        balance = balance.add(amount);
+    }
+
+    public void withdraw(BigDecimal amount) throws NotEnoughMoneyException {
+        if (balance.compareTo(amount) < 0) throw new NotEnoughMoneyException("Insufficient funds");
+
+        balance = balance.subtract(amount);
     }
 }
