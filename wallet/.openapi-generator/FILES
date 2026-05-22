@@ -1,0 +1,8 @@
+.openapi-generator-ignore
+README.md
+pom.xml
+src/main/java/com/dmitrix/wallet/api/ApiApi.java
+src/main/java/com/dmitrix/wallet/api/ApiUtil.java
+src/main/java/com/dmitrix/wallet/api/model/ErrorResponse.java
+src/main/java/com/dmitrix/wallet/api/model/WalletRequest.java
+src/main/java/com/dmitrix/wallet/api/model/WalletResponse.java
