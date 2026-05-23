@@ -4,7 +4,9 @@ import com.dmitrix.wallet.domain.entities.Wallet;
 import com.dmitrix.wallet.domain.queries.GetWalletQuery;
 import com.dmitrix.wallet.domain.repositories.WalletRepositoryInterface;
 import com.dmitrix.wallet.domain.useCases.GetWalletUseCase;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GetWalletService implements GetWalletUseCase {
     private WalletRepositoryInterface walletRepository;
 

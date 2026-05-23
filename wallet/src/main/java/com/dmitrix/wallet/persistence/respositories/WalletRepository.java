@@ -38,9 +38,11 @@ public class WalletRepository implements WalletRepositoryInterface {
     }
 
     public Wallet save(Wallet walletToSave) {
-        WalletEntity walletEntityToSave = this.toEntity(walletToSave);
+        WalletEntity walletEntity = this.walletJpaRepository.findById(walletToSave.getWalletId()).orElseThrow(() -> new RecordNotFoundException("Wallet not found"));
 
-        WalletEntity savedWalletEntity = this.walletJpaRepository.save(walletEntityToSave);
+        walletEntity.setBalance(walletToSave.getBalance());
+
+        WalletEntity savedWalletEntity = this.walletJpaRepository.save(walletEntity);
 
         return this.toWallet(savedWalletEntity);
     }

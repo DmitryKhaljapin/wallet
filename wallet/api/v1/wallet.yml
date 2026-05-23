@@ -81,7 +81,6 @@ components:
             - WITHDRAW
         amount:
           type: number
-          format: double
           example: 1000.50
     WalletResponse:
       type: object
@@ -91,7 +90,6 @@ components:
           format: uuid
         balance:
           type: number
-          format: double
           example: 15000.75
   responses:
     SuccessResponse:

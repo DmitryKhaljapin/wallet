@@ -15,7 +15,7 @@ public class WalletEntity {
     @Id
     private UUID id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 19, scale = 2)
     private BigDecimal balance;
 
     public WalletEntity() {}
