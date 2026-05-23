@@ -8,6 +8,7 @@ import com.dmitrix.wallet.domain.entities.Wallet;
 import com.dmitrix.wallet.domain.queries.GetWalletQuery;
 import com.dmitrix.wallet.domain.useCases.GetWalletUseCase;
 import com.dmitrix.wallet.domain.useCases.UpdateWalletUseCase;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,30 +18,32 @@ import java.util.UUID;
 
 @RestController
 public class WalletController implements WalletApi {
-    private final WalletMapper mappper;
+    private final WalletMapper mapper;
 
     private final UpdateWalletUseCase updateWalletService;
     private final GetWalletUseCase getWalletService;
 
     public WalletController(WalletMapper mapper, UpdateWalletUseCase updateWalletService, GetWalletUseCase getWalletService) {
-        this.mappper = mapper;
+        this.mapper = mapper;
         this.updateWalletService = updateWalletService;
         this.getWalletService = getWalletService;
     }
 
-    public ResponseEntity<WalletResponse> getWalletById(@PathVariable() UUID walletId) {
-        GetWalletQuery query = this.mappper.toQuery(walletId);
+    @Override
+    public ResponseEntity<WalletResponse> getWalletById(@PathVariable() UUID id) {
+        GetWalletQuery query = this.mapper.toQuery(id);
 
         Wallet wallet = this.getWalletService.handle(query);
 
-        return ResponseEntity.ok(this.mappper.toResponse(wallet));
+        return ResponseEntity.ok(this.mapper.toResponse(wallet));
     }
 
-    public ResponseEntity<WalletResponse> updateWallet(@RequestBody() WalletRequest request) {
-        UpdateWalletCommand command = this.mappper.toCommand(request);
+    @Override
+    public ResponseEntity<WalletResponse> updateWallet(@Valid  @RequestBody() WalletRequest request) {
+        UpdateWalletCommand command = this.mapper.toCommand(request);
 
         Wallet wallet = this.updateWalletService.handle(command);
 
-        return ResponseEntity.ok(this.mappper.toResponse(wallet));
+        return ResponseEntity.ok(this.mapper.toResponse(wallet));
     }
 }
