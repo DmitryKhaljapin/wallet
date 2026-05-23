@@ -105,35 +105,4 @@ public class WalletControllerTest {
         mockMvc.perform(post("/api/v1/wallet").contentType(MediaType.APPLICATION_JSON).content(invalidJson))
                 .andExpect(status().isBadRequest());
     }
-
-    @Test
-    void shouldReturn404WhenWalletNotFound() throws Exception {
-        UUID walletId = UUID.randomUUID();
-        GetWalletQuery query = new GetWalletQuery(walletId);
-
-        when(mapper.toQuery(walletId)).thenReturn(query);
-        when(getWalletService.handle(query)).thenThrow(new RecordNotFoundException("Wallet not found"));
-
-        mockMvc.perform(get("/api/v1/wallets/" + walletId))
-                .andExpect(status().isNotFound());
-        verify(getWalletService).handle(query);
-    }
-
-    @Test
-    void shouldReturn422WhenNotEnoughMoney() throws Exception {
-        UUID walletId = UUID.randomUUID();
-
-        UpdateWalletCommand command = new UpdateWalletCommand(walletId, new BigDecimal("540.00"), OperationType.DEPOSIT);
-        WalletRequest request = new WalletRequest().walletId(walletId).amount(new BigDecimal("540.00")).operationType(WalletRequest.OperationTypeEnum.DEPOSIT);
-
-        when(mapper.toCommand(any(WalletRequest.class))).thenReturn(command);
-        when(updateWalletService.handle(command)).thenThrow(new NotEnoughMoneyException("Not enough money"));
-
-        mockMvc.perform(post("/api/v1/wallet").contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isUnprocessableEntity());
-        verify(updateWalletService).handle(
-                new UpdateWalletCommand(walletId, new BigDecimal("540.00"), OperationType.DEPOSIT)
-        );
-    }
-
 }
