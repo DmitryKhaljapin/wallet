@@ -8,8 +8,6 @@ import com.dmitrix.wallet.application.WalletMapper;
 import com.dmitrix.wallet.domain.OperationType;
 import com.dmitrix.wallet.domain.commands.UpdateWalletCommand;
 import com.dmitrix.wallet.domain.entities.Wallet;
-import com.dmitrix.wallet.domain.exceptions.NotEnoughMoneyException;
-import com.dmitrix.wallet.domain.exceptions.RecordNotFoundException;
 import com.dmitrix.wallet.domain.queries.GetWalletQuery;
 import com.dmitrix.wallet.domain.useCases.GetWalletUseCase;
 import com.dmitrix.wallet.domain.useCases.UpdateWalletUseCase;
@@ -18,8 +16,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import org.springframework.http.MediaType;
